@@ -14,7 +14,14 @@ public class SchedulerService {
     public void executeTask() {
         //report generation
         //sending notification
-        System.out.println("Executing task at: " + new Date());
+        System.out.println("uniqueTaskName Executing task at: " + new Date());
+    }
+    @Scheduled(fixedRate = 3000)
+    @SchedulerLock(name = "doSyncTask",lockAtMostFor = "5m",lockAtLeastFor = "2s")// Executes every 3 seconds
+    public void executeTask1() {
+        //report generation
+        //sending notification
+        System.out.println("doSyncTask Executing task at: " + new Date());
     }
 }
 
